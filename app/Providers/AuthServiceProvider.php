@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'VulpeProject\Model' => 'VulpeProject\Policies\ModelPolicy',
+        'VulpeProject\Entities' => 'VulpeProject\Policies\ModelPolicy',
     ];
 
     /**

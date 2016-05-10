@@ -3,22 +3,29 @@
 namespace VulpeProject\Http\Controllers;
 
 use Illuminate\Http\Request;
+use VulpeProject\Contracts\Clients\ClientRepository;
 
-use VulpeProject\Http\Requests;
-use VulpeProject\Http\Controllers\Controller;
-
-use VulpeProject\Client;
 
 class ClientController extends Controller
 {
+    /**
+     * @var ClientRepository
+     */
+    private $repository;
+
+
+    function __construct(ClientRepository $repository)
+    {
+        $this->repository = $repository;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ClientRepository $repository)
     {
-        return Client::all();
+        return $repository->all();
     }
 
     /**
@@ -28,7 +35,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        //$this
     }
 
     /**
@@ -39,7 +46,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        return Client::create($request->all());
+        return $this->repository->create($request->all());
     }
 
     /**
@@ -50,7 +57,7 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        return Client::find($id);
+        return $this->repository->find($id);
     }
 
     /**
@@ -62,9 +69,8 @@ class ClientController extends Controller
      */
     public function update($id, Request $request)
     {
-        $client = Client::find($id)->update($request->all());
-
-        return Client::find($id);
+        $client = $this->repository->find($id)->update($request->all());
+        return $this->repository->find($id);
     }
 
     /**
@@ -75,6 +81,6 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        Client::find($id)->delete();
+        $this->repository->find($id)->delete();
     }
 }

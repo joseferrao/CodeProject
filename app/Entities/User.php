@@ -1,6 +1,6 @@
 <?php
 
-namespace VulpeProject;
+namespace VulpeProject\Entities;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;

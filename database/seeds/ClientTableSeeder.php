@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use VulpeProject\Client;
+use VulpeProject\Entities\Clients\Client;
 
 class ClientTableSeeder extends Seeder
 {

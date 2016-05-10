@@ -145,6 +145,16 @@ return [
         VulpeProject\Providers\EventServiceProvider::class,
         VulpeProject\Providers\RouteServiceProvider::class,
 
+        /*
+         * Package
+         */
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
+
+        /**
+         * Aplication
+         */
+        VulpeProject\Providers\RepositoryServiceProvider::class,
+
     ],
 
     /*
