@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use VulpeProject\Entities\Clients\Client;
+use VulpeProject\Entities\User;
 
-class ClientTableSeeder extends Seeder
+class UserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,7 +12,7 @@ class ClientTableSeeder extends Seeder
      */
     public function run()
     {
-        Client::truncate();
-        factory(Client::class, 20)->create();
+        User::truncate();
+        factory(User::class, 10)->create();
     }
 }

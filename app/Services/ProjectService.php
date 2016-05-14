@@ -2,23 +2,23 @@
 
 namespace VulpeProject\Services;
 
-use VulpeProject\Contracts\Clients\ClientRepository;
-use VulpeProject\Validators\Clients\ClientValidator;
+use VulpeProject\Contracts\Projects\ProjectRepository;
+use VulpeProject\Validators\Projects\ProjectValidator;
 use Prettus\Validator\Exceptions\ValidatorException;
 
-class ClientService
+class ProjectService
 {
 	/**
-     * @var ClientRepository
+     * @var ProjectRepository
      */
     protected $repository;
 
     /**
-     * @var ClientValidator
+     * @var ProjectValidator
      */
     protected $validator;
 
-    public function __construct(ClientRepository $repository, ClientValidator $validator){
+    public function __construct(ProjectRepository $repository, ProjectValidator $validator){
         $this->repository = $repository;
         $this->validator  = $validator;
     }
@@ -37,8 +37,6 @@ class ClientService
 			];
 		}
 	}
-
-
 
 	public function update(array $data, $id)
 	{

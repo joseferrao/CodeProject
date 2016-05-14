@@ -23,9 +23,9 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(
-            \VulpeProject\Contracts\Clients\ClientRepository::class, 
-            \VulpeProject\Repositories\Clients\ClientRepositoryEloquent::class);
+        $this->app->bind(\VulpeProject\Contracts\Clients\ClientRepository::class, \VulpeProject\Repositories\Clients\ClientRepositoryEloquent::class);
+
+        $this->app->bind(\VulpeProject\Contracts\Projects\ProjectRepository::class, \VulpeProject\Repositories\Projects\ProjectRepositoryEloquent::class);
         //:end-bindings:
     }
 }

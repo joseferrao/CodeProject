@@ -24,7 +24,6 @@ class ClientRepositoryEloquent extends BaseRepository implements ClientRepositor
         return Client::class;
     }
 
-    
 
     /**
      * Boot up the repository, pushing criteria
