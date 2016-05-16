@@ -19,8 +19,8 @@ class CreateProjectsTable extends Migration
             $table->unsignedInteger('client_id');
             $table->string('name');
             $table->text('description');
-            $table->string('progress');
-            $table->string('status');
+            $table->smallInteger('progress')->unsigned();
+            $table->smallInteger('status')->unsigned();
             $table->date('due_date');
             $table->timestamps();
 

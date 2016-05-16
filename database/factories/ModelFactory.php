@@ -20,8 +20,6 @@ $factory->define(VulpeProject\Entities\User::class, function (Faker\Generator $f
     ];
 });
 
-
-
 $factory->define(VulpeProject\Entities\Clients\Client::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
@@ -39,9 +37,17 @@ $factory->define(VulpeProject\Entities\Projects\Project::class, function (Faker\
             'client_id' => $faker->numberBetween(1, 20),
             'name' => $faker->name,
             'description' => $faker->sentence,
-            'progress' => $faker->randomElement(['0%','25%', '50%', '75%','100%']),
-            'status' => $faker->randomElement(['Nao iniciado', 'Iniciado', 'Andamento','Concluido']),
-            'due_date' => $faker->date,
+            'progress' => rand(1,100),
+            'status' => rand(1,3),
+            'due_date' => $faker->dateTime('now')
 
+    ];
+});
+
+$factory->define(VulpeProject\Entities\Projects\ProjectNote::class, function (Faker\Generator $faker) {
+    return [
+            'project_id' => rand(1,10),
+            'title' => $faker->word,
+            'note' => $faker->sentence,
     ];
 });

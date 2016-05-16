@@ -35,7 +35,7 @@ class ClientController extends Controller
      */
     public function index(ClientRepository $repository)
     {
-        return $repository->all();
+        return $this->repository->all();
     }
 
     /**

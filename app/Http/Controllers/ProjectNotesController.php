@@ -3,26 +3,26 @@
 namespace VulpeProject\Http\Controllers;
 
 use Illuminate\Http\Request;
-use VulpeProject\Contracts\Projects\ProjectRepository;
-use VulpeProject\Services\ProjectService;
+use VulpeProject\Contracts\Projects\ProjectNoteRepository;
+use VulpeProject\Services\ProjectNoteService;
 
-class ProjectController extends Controller
+class ProjectNotesController extends Controller
 {
     /**
-     * @var ProjectRepository
+     * @var ProjectNoteRepository
      */
     private $repository;
 
     /**
-     * @var ProjectService
+     * @var ProjectNoteService
      */
     private $service;
 
     /**
-     * @param ProjectRepository $repository 
-     * @param ProjectService    $serviceclients
+     * @param ProjectNoteRepository $repository 
+     * @param ProjectNoteService    $service
      */
-    function __construct(ProjectRepository $repository, ProjectService $service)
+    function __construct(ProjectNoteRepository $repository, ProjectNoteService $service)
     {
         $this->repository = $repository;
         $this->service = $service;
@@ -33,20 +33,19 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        return $this->repository->with(['owner','client'])->all();
+        return $this->repository->findWhere(['project_id' => $id]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $requestclients
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {   
-        //dd($request->all());
         return $this->service->create($request->all());
     }
 
@@ -56,9 +55,9 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $noteID)
     {
-        return $this->repository->with(['owner','client'])->find($id);
+        return $this->repository->findWhere(['project_id' => $id, 'id' => $noteID]);
     }
 
     /**
