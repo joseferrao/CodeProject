@@ -14,5 +14,11 @@ class UserTableSeeder extends Seeder
     {
         User::truncate();
         factory(User::class, 10)->create();
+        factory(User::class)->create([
+            'name' => 'Jose dos Santos',
+            'email' => 'joses.ferrao@gmail.com',
+            'password' => bcrypt(123456),
+            'remember_token' => str_random(10),
+        ]);
     }
 }

@@ -48,6 +48,23 @@ $factory->define(VulpeProject\Entities\Projects\ProjectNote::class, function (Fa
     return [
             'project_id' => rand(1,10),
             'title' => $faker->word,
-            'note' => $faker->sentence,
+            'note' => $faker->sentence
+    ];
+});
+
+$factory->define(VulpeProject\Entities\Projects\ProjectTask::class, function (Faker\Generator $faker) {
+    return [
+            'project_id' => rand(1,10),
+            'name' => $faker->word,
+            'start_date' => $faker->date(),
+            'due_date' => $faker->date(),
+            'status' => rand(1,3),
+    ];
+});
+
+$factory->define(VulpeProject\Entities\Projects\ProjectMember::class, function (Faker\Generator $faker) {
+    return [
+            'project_id' => rand(1,10),
+            'user_id'   => rand(1,11)
     ];
 });

@@ -2,46 +2,49 @@
 
 namespace VulpeProject\Services;
 
-use VulpeProject\Contracts\Projects\ProjectNoteRepository;
-use VulpeProject\Validators\Projects\ProjectNoteValidator;
+use VulpeProject\Contracts\Projects\ClientRepository;
+use VulpeProject\Validators\Projects\ClientValidator;
 use Prettus\Validator\Exceptions\ValidatorException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 
-class ProjectNoteService
+class ProjectTaskService
 {
 	/**
-   * @var ProjectNoteRepository
-   */
-  protected $repository;
+     * @var ProjectTaskRepository
+     */
+    protected $repository;
 
-  /**
-   * @var ProjectNoteValidator
-   */
-  protected $validator;
+    /**
+     * @var ProjectTaskValidator
+     */
+    protected $validator;
 
-  public function __construct(ProjectNoteRepository $repository, ProjectNoteValidator $validator){
-      $this->repository = $repository;
-      $this->validator  = $validator;
-  }
+    public function __construct(ProjectTaskRepository $repository, ProjectTaskValidator $validator){
+        $this->repository = $repository;
+        $this->validator  = $validator;
+    }
 
-  public function find($id, $noteID)
+
+  public function find($id, $taskID)
   {
   	try {
-  			return $this->repository->findWhere(['project_id' => $id, 'id' => $noteID]);
+  		return $this->repository->findWhere(['project_id' => $id, 'id' => $taskID]);
   	} catch (ModelNotFoundException $e) {
         return [
             'error' => true,
-            'message' => 'Anotação não encontrada.'
+            'message' => 'Tarefa não encontrada.'
         ];            
    	 } 
   }
+
 
 	public function create(array $data)
 	{
 		try {
 				$this->validator->with($data)->passesOrFail();
-	      return $this->repository->create($data);
+	            return $this->repository->create($data);
+
 		} catch (ValidatorException $e){
 			return [
 				'error' => true,
@@ -50,10 +53,12 @@ class ProjectNoteService
 		} catch (\Exception $e) {
         return [
             'error' => true,
-            'message' => 'Ocorreu algum erro ao criar a anotação.'
+            'message' => 'Ocorreu algum erro ao criar a tarefa.'
         ];
     	}
 	}
+
+
 
 	public function update(array $data, $id)
 	{
@@ -70,12 +75,12 @@ class ProjectNoteService
 		}	catch (ModelNotFoundException $e) {
         return [
             'error' => true,
-            'message' => 'Anotação não encontrado.'
+            'message' => 'Tarefa não encontrado.'
         ];            
 	    } catch (\Exception $e) {
 	        return [
 	            'error' => true,
-	            'message' => 'Ocorreu algum erro ao atualizar a anotação'
+	            'message' => 'Ocorreu algum erro ao atualizar a tarefa'
 	        ];
 	    	}	
 	}
@@ -86,18 +91,19 @@ class ProjectNoteService
         $this->repository->find($id)->delete();
         return [
         	'success'=>true, 
-        	'message' =>	'Anotação excluída com sucesso!'
+        	'message' =>	'Tarefa excluída com sucesso!'
         ];
     } catch (ModelNotFoundException $e) {
 	        return [
 	        	'error'=>true,
-	        	'message' => 'Anotação não encontrado.'
+	        	'message' => 'Tarefa não encontrado.'
 	        ];
 	    	} catch (\Exception $e) {
 	        return [
 	        	'error'=>true,
-	        	'message' => 'Ocorreu algum erro ao excluir a anotação.'
+	        	'message' => 'Ocorreu algum erro ao excluir a tarefa.'
 	        ];
 	    	}
   }
+
 }

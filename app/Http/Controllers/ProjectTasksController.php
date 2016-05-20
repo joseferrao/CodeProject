@@ -3,26 +3,26 @@
 namespace VulpeProject\Http\Controllers;
 
 use Illuminate\Http\Request;
-use VulpeProject\Contracts\Projects\ProjectNoteRepository;
-use VulpeProject\Services\ProjectNoteService;
+use VulpeProject\Contracts\Projects\ProjectTaskRepository;
+use VulpeProject\Services\ProjectTaskService;
 
-class ProjectNotesController extends Controller
+class ProjectTasksController extends Controller
 {
     /**
-     * @var ProjectNoteRepository
+     * @var ProjectTaskRepository
      */
     private $repository;
 
     /**
-     * @var ProjectNoteService
+     * @var ProjectTaskService
      */
     private $service;
 
     /**
-     * @param ProjectNoteRepository $repository 
-     * @param ProjectNoteService    $service
+     * @param ProjectTaskRepository $repository 
+     * @param ProjectTaskService    $service
      */
-    function __construct(ProjectNoteRepository $repository, ProjectNoteService $service)
+    function __construct(ProjectTaskRepository $repository, ProjectTaskService $service)
     {
         $this->repository = $repository;
         $this->service = $service;
@@ -55,9 +55,9 @@ class ProjectNotesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, $noteID)
+    public function show($id, $taskID)
     {
-        return $this->service->find($id, $noteID]);
+        return $this->service->find($id, $taskID]);
     }
 
     /**
@@ -80,6 +80,6 @@ class ProjectNotesController extends Controller
      */
     public function destroy($id)
     {
-        $this->service->delete($id);
+        return $this->service->delete($id);
     }
 }

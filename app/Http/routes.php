@@ -27,11 +27,18 @@ Route::get('project/{id}/note/{noteId}', 	'ProjectNotesController@show');
 Route::put('project/note/{id}', 			'ProjectNotesController@update');
 Route::delete('project/note/{id}', 			'ProjectNotesController@destroy');
 
-Route::get('project', 			'ProjectController@index');
-Route::post('project', 			'ProjectController@store');
+Route::get('project/{id}/tastks', 			'ProjectTaskController@index');
+Route::post('project/{id}tastks', 			'ProjectTaskController@store');
+Route::get('project/{id}/tastks/{taskId}', 	'ProjectTaskController@show');
+Route::put('project/tastks/{id}', 			'ProjectTaskController@update');
+Route::delete('project/tastks/{id}', 		'ProjectTaskController@destroy');
+
+Route::get('project/', 			'ProjectController@index');
+Route::post('project/', 			'ProjectController@store');
 Route::get('project/{id}', 		'ProjectController@show');
 Route::put('project/{id}', 		'ProjectController@update');
 Route::delete('project/{id}', 	'ProjectController@destroy');
+
 
 Route::get('user', function(){
 	return \VulpeProject\Entities\User::all();
