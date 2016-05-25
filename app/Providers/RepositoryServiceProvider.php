@@ -32,6 +32,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(\VulpeProject\Contracts\Projects\ProjectTaskRepository::class, \VulpeProject\Repositories\Projects\ProjectTaskRepositoryEloquent::class);
         
         $this->app->bind(\VulpeProject\Contracts\Projects\ProjectMemberRepository::class, \VulpeProject\Repositories\Projects\ProjectMemberRepositoryEloquent::class);
+
         //:end-bindings:
     }
 }
