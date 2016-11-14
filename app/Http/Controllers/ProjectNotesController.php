@@ -45,7 +45,7 @@ class ProjectNotesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         return $this->service->create($request->all());
     }
 
@@ -57,7 +57,7 @@ class ProjectNotesController extends Controller
      */
     public function show($id, $noteID)
     {
-        return $this->service->find($id, $noteID]);
+        return $this->service->find($id, $noteID);
     }
 
     /**
@@ -80,6 +80,6 @@ class ProjectNotesController extends Controller
      */
     public function destroy($id)
     {
-        $this->service->delete($id);
+        return $this->service->delete($id);
     }
 }

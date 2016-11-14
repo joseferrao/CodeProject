@@ -4,6 +4,7 @@ namespace VulpeProject\Http\Controllers;
 
 use Illuminate\Http\Request;
 use VulpeProject\Contracts\Projects\ProjectTaskRepository;
+use VulpeProject\Http\Requests\Projects\ProjectTaskUpdateRequest;
 use VulpeProject\Services\ProjectTaskService;
 
 class ProjectTasksController extends Controller
@@ -57,19 +58,12 @@ class ProjectTasksController extends Controller
      */
     public function show($id, $taskID)
     {
-        return $this->service->find($id, $taskID]);
+        return $this->service->find($id, $taskID);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update($id, Request $request)
     {
-        return  $this->service->update($request->all(), $id);
+        return $this->service->update($id, $request->all());
     }
 
     /**

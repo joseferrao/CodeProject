@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model'  => VulpeProject\User::class,
+        'model'  => VulpeProject\Entities\User::class,
         'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

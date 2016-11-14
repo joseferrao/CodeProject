@@ -8,8 +8,12 @@ use \Prettus\Validator\LaravelValidator;
 class ProjectTaskValidator extends LaravelValidator {
 
     protected $rules = [
-        ValidatorInterface::RULE_CREATE => [],
-        ValidatorInterface::RULE_UPDATE => [],
+        ValidatorInterface::RULE_CREATE => [
+            'project_id' => 'required'
+        ],
+        ValidatorInterface::RULE_UPDATE => [
+            'project_id' => 'required'
+        ]
    ];
 
 }

@@ -2,7 +2,7 @@
 
 namespace VulpeProject\Http\Controllers\Auth;
 
-use VulpeProject\User;
+use VulpeProject\Entities\User;
 use Validator;
 use VulpeProject\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;

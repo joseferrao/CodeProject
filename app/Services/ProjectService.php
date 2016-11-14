@@ -25,17 +25,17 @@ class ProjectService
         $this->validator  = $validator;
     }
 
-  public function find($id)
-  {
-  	try {
-  			return $this->repository->with(['owner','client'])->find($id);
-  	} catch (ModelNotFoundException $e) {
-        return [
-            'error' => true,
-            'message' => 'Projeto não encontrado.'
-        ];            
-   	 } 
-  }
+    public function find($id)
+    {
+        try {
+            return $this->repository->with(['owner','client'])->find($id);
+        } catch (ModelNotFoundException $e) {
+            return [
+                'error' => true,
+                'message' => 'Projeto não encontrado.'
+            ];
+        }
+    }
 
 	public function create(array $data)
 	{
@@ -79,28 +79,47 @@ class ProjectService
 	}
 
 	public function destroy($id)
-  {
-    try {
-        $this->repository->find($id)->delete();
-        return [
-        	'success'=>true, 
-        	'message' =>	'Projeto deletado com sucesso!'
-        ];
-    } catch (QueryException $e) {
-        return [
-        	'error'=>true,
-        	'message' => 'Projeto não pode ser apagado pois existe um ou mais clientes vinculados a ele.'
-        ];
-    	} catch (ModelNotFoundException $e) {
-	        return [
-	        	'error'=>true,
-	        	'message' => 'Projeto não encontrado.'
-	        ];
-	    	} catch (\Exception $e) {
-	        return [
-	        	'error'=>true,
-	        	'message' => 'Ocorreu algum erro ao excluir o projeto.'
-	        ];
-	    	}
-  }
+    {
+        try {
+            $this->repository->find($id)->delete();
+            return [
+                'success'=>true,
+                'message' =>	'Projeto deletado com sucesso!'
+            ];
+        } catch (QueryException $e) {
+            return [
+                'error'=>true,
+                'message' => 'Projeto não pode ser apagado pois existe um ou mais clientes vinculados a ele.'
+            ];
+        } catch (ModelNotFoundException $e) {
+            return [
+                'error'=>true,
+                'message' => 'Projeto não encontrado.'
+            ];
+        } catch (\Exception $e) {
+            return [
+                'error'=>true,
+                'message' => 'Ocorreu algum erro ao excluir o projeto.'
+            ];
+        }
+    }
+
+    public function addMember($project, array $data)
+    {
+        //
+    }
+
+    public function removeMember($id)
+    {
+        //
+    }
+
+    /**
+     * @param $project
+     * @param $id
+     */
+    public function isMember($project, $id)
+    {
+        $this->repository->with('members')->find($project);
+    }
 }

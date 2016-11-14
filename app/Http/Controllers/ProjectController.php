@@ -37,6 +37,7 @@ class ProjectController extends Controller
     {
         return $this->repository->with(['owner','client'])->all();
     }
+    
 
     /**
      * Store a newly created resource in storage.
